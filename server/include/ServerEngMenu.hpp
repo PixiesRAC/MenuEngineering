@@ -1,7 +1,8 @@
 #ifndef SERVERENGMENU_HPP_
 # define SERVERENGMENU_HPP_
 
-class	ServerEngMenu final : public IserverEngMenu
+#include "IserverEngMenu.hpp"
+class	ServerEngmenu final : public IserverEngMenu
 {
 
 public :
@@ -13,7 +14,7 @@ public :
   const ServerEngmenu & operator=(const ServerEngmenu &) = delete;
   ServerEngmenu && operator=(ServerEngmenu &&) = delete;
     
-  virtual ~ServerEngMenu();
+  virtual ~ServerEngmenu();
 
     /*
    * \fn ListTo (METHODE final override)
@@ -21,7 +22,7 @@ public :
    * \return bool
    */
   
-  virtual bool ListenTo() final override;
+  virtual bool ListenTo()  final override;
 
     /*
    * \fn ProcessMargin  (METHODE final override)
