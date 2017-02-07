@@ -2,7 +2,7 @@
 # define SERVERENGMENU_HPP_
 
 #include "IserverEngMenu.hpp"
-class	ServerEngmenu final : public IserverEngMenu
+class	ServerEngmenu : public IserverEngMenu
 {
 
 public :
@@ -41,9 +41,9 @@ public :
 
  private :
 
-  int fdBuy; /*!< fd fichier de conf pour les produits achetes (avant la marge de profit) */
-  int fdSell; /*!< fd fichier de conf pour les produits a vendre (apres la marge de profit) */
-  int fdClient; /*!< fd acheteur (un seul pour le moment) */
+  int fdBuy_; /*!< fd fichier de conf pour les produits achetes (avant la marge de profit) */
+  int fdSell_; /*!< fd fichier de conf pour les produits a vendre (apres la marge de profit) */
+  int fdClient_; /*!< fd acheteur (un seul pour le moment) */
 };
 
 #endif /* !SERVERENGMENU_HPP_ */
