@@ -5,8 +5,8 @@
 
 typedef enum	e_type
   {
-    VIANDE,
     POISSON,
+    VIANDE,
     FRUIT,
     BIERE,
     OASIS,
@@ -15,9 +15,10 @@ typedef enum	e_type
     MOUSSAKA
   }		t_type;
 
-typdef struct	s_item
+typedef struct	s_item
 {
-  t_type       	type;
+  //  t_type       	type;
+  int		id;
   std::string	name;
   int		price;
   int		marge;

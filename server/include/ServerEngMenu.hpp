@@ -3,6 +3,9 @@
 
 #include <string>
 #include "IserverEngMenu.hpp"
+#include "Item.h"
+
+#include <vector>
 
 # define SIZE_BUFF 256
 
@@ -69,12 +72,14 @@ public :
   
  private :
 
-  int	fdBuy_; /*!< fd fichier de conf pour les produits achetes (avant la marge de profit) */
-  int	fdSell_; /*!< fd fichier de conf pour les produits a vendre (apres la marge de profit) */
-  int	fdClient_; /*!< fd acheteur (un seul pour le moment) */
-  int	fdServer_; /*!< fd acheteur (un seul pour le moment) */
-  char	buffer_[SIZE_BUFF]; /*!< buffer reception client */
-  static constexpr const int   pg_port_ = 4243; /*!< private global port */
+  int				fdBuy_; /*!< fd fichier de conf pour les produits achetes (avant la marge de profit) */
+  int				fdSell_; /*!< fd fichier de conf pour les produits a vendre (apres la marge de profit) */
+  int				fdClient_; /*!< fd acheteur (un seul pour le moment) */
+  int				fdServer_; /*!< fd acheteur (un seul pour le moment) */
+  char				buffer_[SIZE_BUFF]; /*!< buffer reception client */
+  static constexpr const int	pg_port_ = 4243; /*!< private global port */
+  static constexpr const char   *path_client_item_ = "../../conf/PRODUITS_ACHAT.json";
+  std::vector<t_item>		menuItem_;
 };
 
 #endif /* !SERVERENGMENU_HPP_ */

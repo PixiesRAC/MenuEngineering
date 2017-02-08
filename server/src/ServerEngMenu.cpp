@@ -5,6 +5,8 @@
 #include <cstring>
 #include <unistd.h>
 #include "../include/ServerEngMenu.hpp"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 ServerEngmenu::ServerEngmenu()
 {
@@ -57,7 +59,25 @@ std::string	ServerEngmenu::getBuffer() const
 
 void	 ServerEngmenu::ProcessMargin()
 {
-  
+  boost::property_tree::ptree root;
+
+  boost::property_tree::read_json(path_client_item_, root);
+
+  std::vector< std::pair<std::string, std::string> >Item;
+  for (boost::property_tree::ptree::value_type &Item : root.get_child("MENU"))
+    {
+      t_item	tmpItem; /* temporaire */
+      
+      tmpItem.id = root.get<int>("MENU." + std::string(Item.first) + ".id");
+      tmpItem.name = root.get<std::string>("MENU." + std::string(Item.first) + ".name");
+      tmpItem.price = root.get<int>("MENU." + std::string(Item.first) + ".prix");
+      tmpItem.marge = root.get<int>("MENU." + std::string(Item.first) + ".marge");
+      this->menuItem_.push_back(tmpItem);
+    }
+  for (auto &menu :  this->menuItem_)
+    {
+      std::cout << menu.name << std::endl;
+    }
 }
 
 void	 ServerEngmenu::WriteTo()
