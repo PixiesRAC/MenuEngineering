@@ -14,18 +14,26 @@ public :
   virtual ~IserverEngMenu() {};
 
   /*
-   * \fn ListTo (METHODE PURE)
-   * \def Ecoute les clients
+   * \fn EtablishEndPoint (METHODE final override)
+   * \def Etablis la connexion
    * \return bool
    */
   
-  virtual bool ListenTo() = 0;
+  virtual bool EtablishEndPoint() = 0;
+
+  /*
+   * \fn KeepCommand  (METHODE PURE)
+   * \def read sur le client pour recevoir les commandes
+   */
+
+  
+  virtual void KeepCommand() = 0;
 
   /*
    * \fn ProcessMargin  (METHODE PURE)
    * \def fait la conversion (%) de marge entre le prix d'achat et le prix de vente
    */
-
+  
   virtual void ProcessMargin() = 0;
 
   /*

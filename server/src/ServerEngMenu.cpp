@@ -1,5 +1,10 @@
-#include "../include/ServerEngMenu.hpp"
 #include <iostream>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <cstring>
+#include <unistd.h>
+#include "../include/ServerEngMenu.hpp"
 
 ServerEngmenu::ServerEngmenu()
 {
@@ -8,12 +13,46 @@ ServerEngmenu::ServerEngmenu()
 
 ServerEngmenu::~ServerEngmenu()
 {
-    std::cout << "ServerEngmenu Destruction" << std::endl;
+  close(this->fdClient_);
+  close(this->fdServer_);
+  std::cout << "ServerEngmenu Destruction" << std::endl;
 }
 
-bool	 ServerEngmenu::ListenTo()
+bool	 ServerEngmenu::EtablishEndPoint()
 {
+  if ((this->fdServer_ = socket(AF_INET, SOCK_STREAM, 0)) == -1)
+    return (false);
+
+  struct sockaddr_in addrServer;
+  struct sockaddr_in addrClient;
+  socklen_t	     sizeClient;
   
+  bzero(&addrServer, sizeof(addrServer));
+  bzero(&addrClient, sizeof(addrClient));
+
+  addrServer.sin_family = AF_INET;
+  addrServer.sin_addr.s_addr = INADDR_ANY;
+  addrServer.sin_port = htons(pg_port_);
+
+  if (bind(this->fdServer_, (struct sockaddr *) &addrServer, socklen_t(sizeof(addrServer))) != 0)
+    return (false);
+  if ((listen(this->fdServer_, 1)) != 0)
+    return (false);
+  if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &sizeClient)) == -1)
+    return (false);
+  return (true);
+}
+
+void ServerEngmenu::KeepCommand()
+{
+  int	tmpSize = 0;
+    if ((tmpSize = read(this->fdClient_, this->buffer_, SIZE_BUFF)) != -1)
+      buffer_[tmpSize] = '\0';
+}
+
+std::string	ServerEngmenu::getBuffer() const
+{
+  return (std::string(this->buffer_));
 }
 
 void	 ServerEngmenu::ProcessMargin()
@@ -22,6 +61,16 @@ void	 ServerEngmenu::ProcessMargin()
 }
 
 void	 ServerEngmenu::WriteTo()
+{
+  
+}
+
+void	ServerEngmenu::ProcessEng()
+{
+  
+}
+
+void	ServerEngmenu::checkStock()
 {
   
 }

@@ -6,6 +6,15 @@ int	main(int argc, char **argv)
 {
   ServerEngmenu srvEngMenu;
 
-  srvEngMenu.ListenTo();
+  if (srvEngMenu.EtablishEndPoint() == false) {
+    perror("Error Listen : ");
+    return (1);
+  }
+  else {
+    while (1) {
+      srvEngMenu.KeepCommand();
+      std::cout << srvEngMenu.getBuffer();
+    }
+  }
   return (0);
 }
