@@ -71,11 +71,18 @@ void ServerEngmenu::KeepCommand()
       tmpBuff.erase(std::remove(tmpBuff.begin(), tmpBuff.end(), '\n'), tmpBuff.end());
       for (auto &menu :  this->menuItem_)
 	{
-	  if (tmpBuff == menu.name )
+	  if (tmpBuff == menu.name)
 	    {
 	      std::cout << "Bien recu !" << std::endl;
 	      usleep(10000); /* it's bad */
 	      write(this->fdClient_, ACK, 3);
+	      rightCmd = true;
+	      this->itemBought_.push_back(menu);
+	      break;
+	    }
+	  else if (tmpBuff == "history")
+	    {
+	      this->ProcessEng();
 	      rightCmd = true;
 	      break;
 	    }
@@ -138,7 +145,15 @@ void	 ServerEngmenu::WriteTo()
 
 void	ServerEngmenu::ProcessEng()
 {
-  
+  std::string tmp;
+  for (auto &item : this->itemBought_)
+    {
+      std::cout << item.name << std::endl;
+      tmp += item.name;
+      tmp += ",";
+    }
+  usleep(10000); /* it's bad */
+  write(this->fdClient_, tmp.c_str(), tmp.size());
 }
 
 void	ServerEngmenu::checkStock()

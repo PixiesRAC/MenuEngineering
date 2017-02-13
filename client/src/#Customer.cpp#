@@ -84,8 +84,7 @@ bool	Customer::Manual()
   
   while (1) /* Le code est moche je sais */
     {
-      write(1, "Afficher la carte => 'carte'\n", strlen("Afficher la carte => 'carte'\n"));
-      write(1, "Historique des achats => 'history'\n", strlen("Historique des achats => 'history'\n"));
+      write(1, "Afficher la carte => 'carte'", 
       write(1, "=>", 2);
       bzero(buffer, SIZE);
       ret = read(0, buffer, SIZE); /* ecoute l'entrée standart pour la commande */
@@ -102,6 +101,10 @@ bool	Customer::Manual()
 	std::cout << "Recu : " << buffer << std::endl;
 	bzero(buffer, SIZE);
       }
+      //      if (strcmp(buffer, ACK))
+      //	write(1, "La commande à ete faite", strlen("La commande à ete faite"));
+      //      else
+      //	write(1, "Erreur commande", strlen("Erreur commande"));
     }
 }
 

@@ -84,7 +84,9 @@ public :
   static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json";
   static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";
   std::vector<t_item>		menuItem_;
+  std::vector<t_item>		itemBought_;
   bool				isReady_;
+  
 };
 
 #endif /* !SERVERENGMENU_HPP_ */
