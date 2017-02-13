@@ -57,6 +57,14 @@ void ServerEngmenu::KeepCommand()
   int	tmpSize = 0;
     if ((tmpSize = read(this->fdClient_, this->buffer_, SIZE_BUFF)) != -1)
       buffer_[tmpSize] = '\0';
+    std::string tmpBuff(this->buffer_);
+    for (auto &menu :  this->menuItem_)
+      {
+	if (tmpBuff == menu.name)
+	  {
+	    std::cout << "OKAY" << std::endl;
+	  }
+      }
 }
 
 std::string	ServerEngmenu::getBuffer() const
