@@ -9,7 +9,7 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <climits>
 
-ServerEngmenu::ServerEngmenu()
+ServerEngmenu::ServerEngmenu() : isReady_(false)
 {
   std::cout << "ServerEngmenu Construction" << std::endl;
 }
@@ -43,6 +43,12 @@ bool	 ServerEngmenu::EtablishEndPoint()
     return (false);
   if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &sizeClient)) == -1)
     return (false);
+  while (this->isReady_ != true)
+    {
+      this->ProcessMargin();
+    }
+  write(this->fdClient_, INIT, strlen(INIT));
+  write(this->fdClient_, "\n", 1);
   return (true);
 }
 
@@ -74,9 +80,11 @@ void	 ServerEngmenu::ProcessMargin()
       tmpItem.price = root.get<int>("MENU." + std::string(Item.first) + ".prix");
       tmpItem.marge = root.get<int>("MENU." + std::string(Item.first) + ".marge");
 
-      if ((((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price) <= ULONG_MAX) {
+      if ((((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price) + 1 <= ULONG_MAX) {
 	
-	unsigned int	tmpResult = ((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price + 1;
+	unsigned int	tmpResult = ((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price;
+	if (tmpResult == tmpItem.price)
+	  ++tmpResult;
 	
 	root.put("MENU." + std::string(Item.first) + ".prix", tmpResult);
     }
@@ -84,6 +92,7 @@ void	 ServerEngmenu::ProcessMargin()
   this->menuItem_.push_back(tmpItem);
 }
   boost::property_tree::write_json(path_vente_item_, root);
+  this->isReady_ = true;
   //  for (auto &menu :  this->menuItem_)
   //    {
   //      std::cout << menu.name << std::endl;
