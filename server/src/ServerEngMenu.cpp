@@ -76,8 +76,8 @@ void	 ServerEngmenu::ProcessMargin()
 
       if ((((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price) <= ULONG_MAX) {
 	
-	unsigned int	tmpResult = ((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price;
-      
+	unsigned int	tmpResult = ((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price + 1;
+	
 	root.put("MENU." + std::string(Item.first) + ".prix", tmpResult);
     }
       

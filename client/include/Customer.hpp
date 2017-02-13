@@ -3,7 +3,8 @@
 
 #include <vector>
 #include "Icustomer.hpp"
-#include "../../server/include/Item.hpp"
+//#include "../../server/include/Item.hpp"
+#include "../../server/include/Item.h"
 
 class	Customer : public Icustomer
 {

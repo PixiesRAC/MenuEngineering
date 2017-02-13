@@ -6,7 +6,7 @@ int	main(int argc, char **argv)
 {
   ServerEngmenu srvEngMenu;
 
-  /*  if (srvEngMenu.EtablishEndPoint() == false) {
+  if (srvEngMenu.EtablishEndPoint() == false) {
     perror("Error Listen : ");
     return (1);
   }
@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
       srvEngMenu.KeepCommand();
       std::cout << srvEngMenu.getBuffer();
     }
-    }*/
-  srvEngMenu.ProcessMargin();
+   }
+  //srvEngMenu.ProcessMargin();
   return (0);
 }
