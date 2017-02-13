@@ -9,6 +9,8 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <climits>
 
+extern bool global_MOCHE;
+
 ServerEngmenu::ServerEngmenu() : isReady_(false)
 {
   std::cout << "ServerEngmenu Construction" << std::endl;
@@ -41,30 +43,42 @@ bool	 ServerEngmenu::EtablishEndPoint()
     return (false);
   if ((listen(this->fdServer_, 1)) != 0)
     return (false);
-  if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &sizeClient)) == -1)
-    return (false);
-  while (this->isReady_ != true)
-    {
-      this->ProcessMargin();
-    }
-  write(this->fdClient_, INIT, strlen(INIT));
-  write(this->fdClient_, "\n", 1);
+  while (1) {
+    if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &sizeClient)) == -1)
+      return (false);
+    std::cout << "Connection entrante" << std::endl;
+    while (this->isReady_ != true)
+      {
+	this->ProcessMargin();
+      }
+    write(this->fdClient_, INIT, strlen(INIT));
+    this->KeepCommand();
+  }
   return (true);
 }
 
 void ServerEngmenu::KeepCommand()
 {
   int	tmpSize = 0;
-    if ((tmpSize = read(this->fdClient_, this->buffer_, SIZE_BUFF)) != -1)
+
+  while (1) {
+    if ((tmpSize = read(this->fdClient_, this->buffer_, SIZE_BUFF)) > 0) {
       buffer_[tmpSize] = '\0';
-    std::string tmpBuff(this->buffer_);
-    for (auto &menu :  this->menuItem_)
-      {
-	if (tmpBuff == menu.name)
-	  {
-	    std::cout << "OKAY" << std::endl;
-	  }
-      }
+      std::string tmpBuff(this->buffer_);
+      std::cout << "Recu :" << tmpBuff << std::endl;
+      tmpBuff.erase(std::remove(tmpBuff.begin(), tmpBuff.end(), '\n'), tmpBuff.end());
+      for (auto &menu :  this->menuItem_)
+	{
+	  if (tmpBuff == menu.name )
+	    {
+	      std::cout << "OKAY" << std::endl;
+	    }
+	}
+    }
+    else
+      break;
+  }
+  std::cout << "Connection perdu" << std::endl;
 }
 
 std::string	ServerEngmenu::getBuffer() const
