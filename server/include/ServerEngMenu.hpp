@@ -80,7 +80,7 @@ public :
   int				fdClient_; /*!< fd acheteur (un seul pour le moment) */
   int				fdServer_; /*!< fd acheteur (un seul pour le moment) */
   char				buffer_[SIZE_BUFF]; /*!< buffer reception client */
-  static constexpr const int	pg_port_ = 4242; /*!< private global port */
+  static constexpr const int	pg_port_ = 4244; /*!< private global port */
   static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json";
   static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";
   std::vector<t_item>		menuItem_;

@@ -30,21 +30,20 @@ bool	 ServerEngmenu::EtablishEndPoint()
 
   struct sockaddr_in addrServer;
   struct sockaddr_in addrClient;
-  socklen_t	     sizeClient;
   
   bzero(&addrServer, sizeof(addrServer));
   bzero(&addrClient, sizeof(addrClient));
 
   addrServer.sin_family = AF_INET;
-  addrServer.sin_addr.s_addr = INADDR_ANY;
   addrServer.sin_port = htons(pg_port_);
 
+  socklen_t		lens = sizeof(addrServer);
   if (bind(this->fdServer_, (struct sockaddr *) &addrServer, socklen_t(sizeof(addrServer))) != 0)
     return (false);
-  if ((listen(this->fdServer_, 1)) != 0)
+  if ((listen(this->fdServer_, 10)) != 0)
     return (false);
   while (1) {
-    if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &sizeClient)) == -1)
+    if ((this->fdClient_ = accept(this->fdServer_, (struct sockaddr *)&addrClient, &lens)) == -1)
       return (false);
     std::cout << "Connection entrante" << std::endl;
     while (this->isReady_ != true)
@@ -60,19 +59,30 @@ bool	 ServerEngmenu::EtablishEndPoint()
 void ServerEngmenu::KeepCommand()
 {
   int	tmpSize = 0;
-
+  bool	rightCmd = false;
+  
   while (1) {
+    rightCmd = false;
+    bzero(this->buffer_, SIZE_BUFF);
     if ((tmpSize = read(this->fdClient_, this->buffer_, SIZE_BUFF)) > 0) {
       buffer_[tmpSize] = '\0';
       std::string tmpBuff(this->buffer_);
-      std::cout << "Recu :" << tmpBuff << std::endl;
+      std::cout << "Recu : " << tmpBuff;
       tmpBuff.erase(std::remove(tmpBuff.begin(), tmpBuff.end(), '\n'), tmpBuff.end());
       for (auto &menu :  this->menuItem_)
 	{
 	  if (tmpBuff == menu.name )
 	    {
-	      std::cout << "OKAY" << std::endl;
+	      std::cout << "Bien recu !" << std::endl;
+	      usleep(10000); /* it's bad */
+	      write(this->fdClient_, ACK, 3);
+	      rightCmd = true;
+	      break;
 	    }
+	}
+      if (rightCmd == false)
+	{
+	  write(this->fdClient_, "KO", 2);
 	}
     }
     else
@@ -109,7 +119,7 @@ void	 ServerEngmenu::ProcessMargin()
 	  ++tmpResult;
 	
 	root.put("MENU." + std::string(Item.first) + ".prix", tmpResult);
-    }
+      }
       
   this->menuItem_.push_back(tmpItem);
 }

@@ -28,7 +28,6 @@ bool	Customer::ConnectTo()
   struct sockaddr_in addr;
   
   addr.sin_family = AF_INET;
-  addr.sin_addr.s_addr = INADDR_ANY; /* local */
   addr.sin_port = htons(this->port_);
 
   socklen_t	size = sizeof(addr);
@@ -46,7 +45,7 @@ bool	Customer::ConnectTo()
       std::cout << "Reception de la carte" << std::endl;
       getMenu();
     }
-  return (true);	
+  return (true);
 }
 
 void	Customer::getMenu()
@@ -83,12 +82,25 @@ bool	Customer::Manual()
   int	ret = 0;
   bzero(buffer, SIZE);
   
-  while (1)
+  while (1) /* Le code est moche je sais */
     {
+      write(1, "Afficher la carte => 'carte'\n", strlen("Afficher la carte => 'carte'\n")); 
       write(1, "=>", 2);
+      bzero(buffer, SIZE);
       ret = read(0, buffer, SIZE); /* ecoute l'entrée standart pour la commande */
-      write(this->fdServer_, buffer, ret); /* ecrit la commande au server */
-      //      ret = read(this->fdServer_, buffer, SIZE); /* recupere le retour du server */
+      std::string tmp(buffer);
+      if (tmp == "carte\n")
+	{
+	  this->getMenu();
+	}
+      else {
+	write(this->fdServer_, buffer, ret); /* ecrit la commande au server */
+	bzero(buffer, SIZE);
+	ret = read(this->fdServer_, buffer, SIZE); /* recupere le retour du server */
+	buffer[ret] = '\0';
+	std::cout << "Recu : " << buffer << std::endl;
+	bzero(buffer, SIZE);
+      }
       //      if (strcmp(buffer, ACK))
       //	write(1, "La commande à ete faite", strlen("La commande à ete faite"));
       //      else
