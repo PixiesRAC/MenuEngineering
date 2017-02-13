@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
       srvEngMenu.KeepCommand();
       std::cout << srvEngMenu.getBuffer();
     }
-   }
-  //srvEngMenu.ProcessMargin();
+  }
+  //  srvEngMenu.ProcessMargin();
   return (0);
 }

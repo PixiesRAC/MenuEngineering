@@ -8,6 +8,8 @@
 #include <vector>
 
 # define SIZE_BUFF 256
+# define INIT	   "INIT" /* le client peut recuperer la carte */
+# define ACK	   "ACK" 
 
 class	ServerEngmenu : public IserverEngMenu
 {
@@ -77,10 +79,11 @@ public :
   int				fdClient_; /*!< fd acheteur (un seul pour le moment) */
   int				fdServer_; /*!< fd acheteur (un seul pour le moment) */
   char				buffer_[SIZE_BUFF]; /*!< buffer reception client */
-  static constexpr const int	pg_port_ = 4243; /*!< private global port */
+  static constexpr const int	pg_port_ = 4242; /*!< private global port */
   static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json";
   static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";
   std::vector<t_item>		menuItem_;
+  bool				ready_;
 };
 
 #endif /* !SERVERENGMENU_HPP_ */
