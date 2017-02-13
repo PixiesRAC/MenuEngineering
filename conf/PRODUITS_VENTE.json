@@ -3,19 +3,19 @@
         "Item1": {
             "id": "0",
             "name": "Thon",
-            "prix": "16",
+            "prix": "17",
             "marge": "30"
         },
         "Item2": {
             "id": "0",
             "name": "Dorade",
-            "prix": "17",
+            "prix": "18",
             "marge": "17"
         },
         "Item3": {
             "id": "0",
             "name": "Saumon",
-            "prix": "75",
+            "prix": "76",
             "marge": "400"
         },
         "Item4": {
@@ -27,19 +27,19 @@
         "Item5": {
             "id": "1",
             "name": "Entrecote",
-            "prix": "18",
+            "prix": "19",
             "marge": "30"
         },
         "Item6": {
             "id": "1",
             "name": "Bavette",
-            "prix": "15",
+            "prix": "16",
             "marge": "20"
         },
         "Item7": {
             "id": "1",
             "name": "Jaret",
-            "prix": "18",
+            "prix": "19",
             "marge": "25"
         },
         "Item8": {
@@ -75,7 +75,7 @@
         "Item13": {
             "id": "3",
             "name": "Coca-cola",
-            "prix": "5",
+            "prix": "6",
             "marge": "400"
         },
         "Item14": {
@@ -87,37 +87,37 @@
         "Item15": {
             "id": "3",
             "name": "Evian",
-            "prix": "39",
+            "prix": "40",
             "marge": "1200"
         },
         "Item16": {
             "id": "3",
             "name": "IceTea",
-            "prix": "5",
+            "prix": "6",
             "marge": "400"
         },
         "Item17": {
             "id": "4",
             "name": "Spaghetti",
-            "prix": "12",
+            "prix": "13",
             "marge": "200"
         },
         "Item18": {
             "id": "4",
             "name": "Tagliatelle",
-            "prix": "15",
+            "prix": "16",
             "marge": "205"
         },
         "Item19": {
             "id": "4",
             "name": "Penne",
-            "prix": "21",
+            "prix": "22",
             "marge": "210"
         },
         "Item20": {
             "id": "4",
             "name": "Fusilli",
-            "prix": "6",
+            "prix": "7",
             "marge": "215"
         }
     }
