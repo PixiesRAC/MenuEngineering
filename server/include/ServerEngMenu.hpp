@@ -12,7 +12,7 @@
 # define ACK		"ACK"
 # define OK		"OK"
 # define KO		"KO"
-# define HISTORY	"HISTORY"
+# define HISTORY	"history"
 /*
  * \class ServerEngmenu
  * \brief Class du simulateur du server de restaurant herite de IserverEngMenu 
