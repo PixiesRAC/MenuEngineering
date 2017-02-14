@@ -21,14 +21,14 @@ typedef enum	e_type
  *
  */
 
-typedef struct	s_item
+typedef struct		s_item
 {
   //  t_type       	type;
-  int		id;
-  std::string	name;
-  int		price;
-  int		marge;
-  
-}		t_item;
+  int			id;
+  std::string		name;
+  unsigned int		price;
+  unsigned int 		marge;
+  unsigned int		bought;
+}			t_item;
 
 #endif /* ! ITEM_H_ */

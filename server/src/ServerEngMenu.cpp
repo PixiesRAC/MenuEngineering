@@ -11,7 +11,7 @@
 
 extern bool global_MOCHE;
 
-ServerEngmenu::ServerEngmenu() : isReady_(false)
+ServerEngmenu::ServerEngmenu() : isReady_(false), bought_(0), medianMargin_(0)
 {
   std::cout << "ServerEngmenu Construction" << std::endl;
 }
@@ -74,18 +74,21 @@ void ServerEngmenu::KeepCommand()
 	  if (tmpBuff == menu.name)
 	    {
 	      std::cout << OK << std::endl;
+	      ++(this->bought_);
 	      //	      usleep(10000); /* it's bad */
 	      write(this->fdClient_, ACK, 3);
 	      rightCmd = true;
+	      menu.bought++;
 	      this->itemBought_.push_back(menu);
 	      break;
 	    }
 	  else if (tmpBuff == HISTORY)
 	    {
 	      if (this->itemBought_.size() > 0)
-		  this->ProcessEng();
-
-	      rightCmd = true;
+		{
+		  this->displayHistory();
+		  rightCmd = true;
+		}
 	      break;
 	    }
 	}
@@ -108,40 +111,89 @@ std::string	ServerEngmenu::getBuffer() const
 void	 ServerEngmenu::ProcessMargin()
 {
   boost::property_tree::ptree root;
-
   boost::property_tree::read_json(path_achat_item_, root);
-
   std::vector< std::pair<std::string, std::string> >Item;
+  
+  int	cptItem = 0;
+  int	medianMarginTmp = 0;
+  
   for (boost::property_tree::ptree::value_type &Item : root.get_child("MENU"))
     {
       t_item	tmpItem; /* temporaire */
       
       tmpItem.id = root.get<int>("MENU." + std::string(Item.first) + ".id");
       tmpItem.name = root.get<std::string>("MENU." + std::string(Item.first) + ".name");
-      tmpItem.price = root.get<int>("MENU." + std::string(Item.first) + ".prix");
-      tmpItem.marge = root.get<int>("MENU." + std::string(Item.first) + ".marge");
-
-      if ((((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price) + 1 <= ULONG_MAX) {
+      tmpItem.price = root.get<unsigned int>("MENU." + std::string(Item.first) + ".prix");
+      tmpItem.marge = root.get<unsigned int>("MENU." + std::string(Item.first) + ".marge");
+      tmpItem.bought = 0;
+      if ((((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price) + 1 <= UINT_MAX) {
 	
 	unsigned int	tmpResult = ((tmpItem.price * tmpItem.marge) / 100) + tmpItem.price;
 	if (tmpResult == tmpItem.price)
 	  ++tmpResult;
 	
 	root.put("MENU." + std::string(Item.first) + ".prix", tmpResult);
+	++cptItem; /* Nombre d'item total */
+	medianMarginTmp += tmpItem.marge; /* additionne la marge des produits */
+	//	std::cout << "marge : " << tmpItem.marge << std::endl;
       }
       
-  this->menuItem_.push_back(tmpItem);
-}
+      this->menuItem_.push_back(tmpItem);
+    }
   boost::property_tree::write_json(path_vente_item_, root);
   this->isReady_ = true;
+  if (cptItem > 0)
+    this->medianMargin_ = medianMarginTmp / cptItem; /* calcul la marge */
 }
 
 void	 ServerEngmenu::WriteTo()
 {
-  
+  /* useless */
 }
 
 void	ServerEngmenu::ProcessEng()
+{
+  system("clear");
+  std::cout << "margin : " << this->medianMargin_ << std::endl;
+  std::cout << "bought : " << this->bought_ << std::endl;
+  for (auto &item : this->menuItem_)
+    {
+      if (item.marge < this->medianMargin_ && item.bought < (this->bought_ / 2))
+	this->dog_.push_back(item); /* push un produit avec une marge faible */
+      else if (item.marge < this->medianMargin_ && item.bought > (this->bought_ / 2))
+	this->horse_.push_back(item); /* push un produit avec une marge haute */
+      else if (item.marge > this->medianMargin_ && item.bought < (this->bought_ / 2))
+	this->puzzle_.push_back(item);
+      else if (item.marge > this->medianMargin_ && item.bought > (this->bought_ / 2))
+	this->star_.push_back(item);
+    }
+  // DOG
+        std::cout << "@@@@@ DOG @@@@@" << std::endl;
+  for (auto &item : this->dog_)
+    {
+      std::cout << item.name << std::endl;
+    }
+  // HORSE
+        std::cout << " @@@@@ HORSE @@@@@" << std::endl;
+    for (auto &item : this->horse_)
+    {
+      std::cout << item.name << std::endl;
+    }
+    // STAR
+          std::cout << "@@@@@ STAR @@@@@" << std::endl;
+      for (auto &item : this->star_)
+    {
+      std::cout << item.name << std::endl;
+    }
+      // PUZZLE
+            std::cout << "@@@@@ PUZZLE @@@@@" << std::endl;
+        for (auto &item : this->puzzle_)
+    {
+      std::cout << item.name << std::endl;
+    }
+}
+
+void	ServerEngmenu::displayHistory()
 {
   std::string tmp;
   for (auto &item : this->itemBought_)
@@ -152,6 +204,7 @@ void	ServerEngmenu::ProcessEng()
     }
   //  usleep(10000); /* it's bad */
   write(this->fdClient_, tmp.c_str(), tmp.size());
+  this->ProcessEng();
 }
 
 void	ServerEngmenu::checkStock()

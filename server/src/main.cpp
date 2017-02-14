@@ -7,6 +7,7 @@
 
 void	MDR(int v)
 {
+  (void)v;
   throw std::runtime_error("CTRL + C DE LA MORT MDDDR");
 }
 
@@ -19,6 +20,8 @@ int	main(int argc, char **argv)
   signal(SIGINT, MDR);
   
   srvEngMenu.ProcessMargin();
+  (void)argc;
+  (void)argv;
   if (srvEngMenu.EtablishEndPoint() == false) {
     perror("Error Listen : ");
     return (1);

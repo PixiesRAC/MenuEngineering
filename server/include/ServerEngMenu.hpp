@@ -62,7 +62,7 @@ public :
    * \brief ecrit vers le client
    */
   
-  virtual void WriteTo() final override;
+  virtual void WriteTo() final override; /* useless */
 
   /*
    * \fn ProcessEng
@@ -81,10 +81,26 @@ public :
 
   /*
    * \fn getBuffer
-   * \brief recupere le buffer de reception
+   * \brief recupere le buffer de reception fonction membre const
    */
   
   std::string	getBuffer() const;
+
+  /*
+   * \fn displayHistory
+   * \brief get l'history sur le server & le client
+   */
+  
+  void		displayHistory();
+
+  /*
+   * \fn preProcessEng
+   * \brief fait les calculs ne necessitant pas la connaissance des produits achetés
+   */
+
+ 
+  //  void		preProcessEng()
+  
   
  private :
 
@@ -99,7 +115,13 @@ public :
   std::vector<t_item>		menuItem_; /*!< vector d'item contenant les produits du menu */
   std::vector<t_item>		itemBought_; /*< vector d'item contenant les produits achetés */
   bool				isReady_; /*< Permet de savoir si le server est pret */
+  unsigned int			bought_; /*< Nombre de Produit acheté */
+  unsigned int			medianMargin_; /*< Moyenne de la marge */
   
+  std::vector<t_item>  		dog_;
+  std::vector<t_item>  		horse_;
+  std::vector<t_item>  		star_;
+  std::vector<t_item>  		puzzle_;
 };
 
 #endif /* !SERVERENGMENU_HPP_ */
