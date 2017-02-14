@@ -7,9 +7,17 @@
 
 #include <vector>
 
-# define SIZE_BUFF 256
-# define INIT	   "INIT"
-# define ACK	   "ACK"
+# define SIZE_BUFF	256
+# define INIT		"INIT"
+# define ACK		"ACK"
+# define OK		"OK"
+# define KO		"KO"
+# define HISTORY	"HISTORY"
+/*
+ * \class ServerEngmenu
+ * \brief Class du simulateur du server de restaurant herite de IserverEngMenu 
+ *
+ */
 
 class	ServerEngmenu : public IserverEngMenu
 {
@@ -27,7 +35,7 @@ public :
 
     /*
    * \fn EtablishEndPoint (METHODE final override)
-   * \def Etablis la connexion
+   * \brief Etablis la connexion
    * \return bool
    */
   
@@ -35,7 +43,7 @@ public :
 
     /*
    * \fn KeepCommand  (METHODE final override)
-   * \def read sur le client pour recevoir les commandes
+   * \brief read sur le client pour recevoir les commandes
    */
 
   
@@ -43,7 +51,7 @@ public :
   
     /*
    * \fn ProcessMargin  (METHODE final override)
-   * \def fait la conversion (%) de marge entre le prix d'achat et le prix de vente
+   * \brief fait la conversion (%) de marge entre le prix d'achat et le prix de vente
    */
 
   
@@ -51,26 +59,31 @@ public :
 
     /*
    * \fn WriteTo  (METHODE final override)
-   * \def ecrit vers le client
+   * \brief ecrit vers le client
    */
   
   virtual void WriteTo() final override;
 
   /*
    * \fn ProcessEng
-   * \def Algo pour le menu engineering
+   * \brief Algo pour le menu engineering
    */
   
   void		ProcessEng();
 
   /*
    * \fn checkStock
-   * \def Notification stock
+   * \brief Notification stock
    */
   
   void		checkStock();
 
 
+  /*
+   * \fn getBuffer
+   * \brief recupere le buffer de reception
+   */
+  
   std::string	getBuffer() const;
   
  private :
@@ -81,11 +94,11 @@ public :
   int				fdServer_; /*!< fd acheteur (un seul pour le moment) */
   char				buffer_[SIZE_BUFF]; /*!< buffer reception client */
   static constexpr const int	pg_port_ = 4244; /*!< private global port */
-  static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json";
-  static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";
-  std::vector<t_item>		menuItem_;
-  std::vector<t_item>		itemBought_;
-  bool				isReady_;
+  static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json"; /*!< Chemin du menu d'achat */
+  static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json"; /*!< Chemin du menu de vente */
+  std::vector<t_item>		menuItem_; /*!< vector d'item contenant les produits du menu */
+  std::vector<t_item>		itemBought_; /*< vector d'item contenant les produits achetés */
+  bool				isReady_; /*< Permet de savoir si le server est pret */
   
 };
 

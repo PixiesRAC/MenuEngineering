@@ -15,6 +15,12 @@ typedef enum	e_type
     MOUSSAKA
   }		t_type;
 
+/*
+ * \struct t_item
+ * \brief structure du menu
+ *
+ */
+
 typedef struct	s_item
 {
   //  t_type       	type;

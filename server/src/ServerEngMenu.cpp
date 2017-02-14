@@ -73,23 +73,25 @@ void ServerEngmenu::KeepCommand()
 	{
 	  if (tmpBuff == menu.name)
 	    {
-	      std::cout << "Bien recu !" << std::endl;
-	      usleep(10000); /* it's bad */
+	      std::cout << OK << std::endl;
+	      //	      usleep(10000); /* it's bad */
 	      write(this->fdClient_, ACK, 3);
 	      rightCmd = true;
 	      this->itemBought_.push_back(menu);
 	      break;
 	    }
-	  else if (tmpBuff == "history")
+	  else if (tmpBuff == HISTORY)
 	    {
-	      this->ProcessEng();
+	      if (this->itemBought_.size() > 0)
+		  this->ProcessEng();
+
 	      rightCmd = true;
 	      break;
 	    }
 	}
       if (rightCmd == false)
 	{
-	  write(this->fdClient_, "KO", 2);
+	  write(this->fdClient_, KO, 2);
 	}
     }
     else
@@ -132,10 +134,6 @@ void	 ServerEngmenu::ProcessMargin()
 }
   boost::property_tree::write_json(path_vente_item_, root);
   this->isReady_ = true;
-  //  for (auto &menu :  this->menuItem_)
-  //    {
-  //      std::cout << menu.name << std::endl;
-  //    }
 }
 
 void	 ServerEngmenu::WriteTo()
@@ -152,7 +150,7 @@ void	ServerEngmenu::ProcessEng()
       tmp += item.name;
       tmp += ",";
     }
-  usleep(10000); /* it's bad */
+  //  usleep(10000); /* it's bad */
   write(this->fdClient_, tmp.c_str(), tmp.size());
 }
 

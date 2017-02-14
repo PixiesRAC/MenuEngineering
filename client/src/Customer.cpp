@@ -42,7 +42,7 @@ bool	Customer::ConnectTo()
       std::string tmpHEAVY(this->buffer_);
       while (tmpHEAVY != INIT) {
       }
-      std::cout << "Reception de la carte" << std::endl;
+      std::cout << RECEPTION << std::endl;
       getMenu();
     }
   return (true);
@@ -84,9 +84,9 @@ bool	Customer::Manual()
   
   while (1) /* Le code est moche je sais */
     {
-      write(1, "Afficher la carte => 'carte'\n", strlen("Afficher la carte => 'carte'\n"));
-      write(1, "Historique des achats => 'history'\n", strlen("Historique des achats => 'history'\n"));
-      write(1, "=>", 2);
+      write(1, DISPLAY_CARTE, strlen(DISPLAY_CARTE));
+      write(1, DISPLAY_HISTORY, strlen(DISPLAY_HISTORY));
+      write(1, CURSOR, 2);
       bzero(buffer, SIZE);
       ret = read(0, buffer, SIZE); /* ecoute l'entrée standart pour la commande */
       std::string tmp(buffer);
