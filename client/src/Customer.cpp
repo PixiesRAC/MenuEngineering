@@ -27,11 +27,11 @@ bool	Customer::ConnectTo()
 
   std::cout << "Connection sur le port :" << this->port_ << std::endl;
   struct sockaddr_in addr;
-  
+  bzero(&addr, sizeof(addr));
   addr.sin_family = AF_INET;
   addr.sin_port = htons(this->port_);
 
-  socklen_t	size = sizeof(addr);
+  //  socklen_t	size = sizeof(addr);
   size_t	retSize = 0;
 	
   if ((this->fdServer_ = socket(AF_INET, SOCK_STREAM, 0)) == -1)
@@ -59,10 +59,12 @@ void	Customer::getMenu()
   std::vector< std::pair<std::string, std::string> >Item;
   for (boost::property_tree::ptree::value_type &Item : root.get_child("MENU"))
     {
-      //      t_item	tmpItem; /* temporaire */
-	//      /*tmpItem.id =*/    root.get<int>("MENU." + std::string(Item.first) + ".id");
-      /*tmpItem.name = */       std::cout << root.get<std::string>("MENU." + std::string(Item.first) + ".name") + " : " << 
-	root.get<int>("MENU." + std::string(Item.first) + ".prix") << "€" << std::endl;
+      t_item	tmpItem; /* temporaire */
+      //      /*tmpItem.id =*/    root.get<int>("MENU." + std::string(Item.first) + ".id");
+      tmpItem.name = root.get<std::string>("MENU." + std::string(Item.first) + ".name");
+      std::cout << tmpItem.name << " : " << 
+      root.get<int>("MENU." + std::string(Item.first) + ".prix") << "€" << std::endl;
+      this->mItemId_.insert( {this->nbItem_, tmpItem.name} );
       ++(this->nbItem_);
       //      /*tmpItem.marge =*/ root.get<int>("MENU." + std::string(Item.first) + ".marge");
       //      this->menuItem_.push_back(tmpItem);
@@ -76,13 +78,22 @@ void	Customer::Buy()
 
 bool	Customer::Automatic()
 {
-  std::cout << this->nbItem_; 
-  //  for (int i = 500; i <= 0; --i)
-  //    {
-  //      int randomValue;
-  //      randomValue = rand() % this->nbItem_;
-  //      std::cout << randomValue << std::endl;
-  //    }
+  std::cout << this->nbItem_;
+  char	buffer[SIZE];
+  int	ret = 0;
+  for (int i = 200000; i != 0; --i) /* nombre d'achat automatique ramdom */
+    {
+      int randomValue;
+      randomValue = rand() % this->nbItem_ ;
+      write(this->fdServer_, this->mItemId_[randomValue].c_str(), this->mItemId_[randomValue].size());
+      bzero(buffer, SIZE);
+      ret = read(this->fdServer_, buffer, SIZE); /* recupere le retour du server */
+      buffer[ret] = '\0';
+      std::cout << "Recu : " << buffer << std::endl;
+      bzero(buffer, SIZE);
+      usleep(1000); /* It's bad je sais */
+    }
+  return (true);
 }
 
 bool	Customer::Manual()
@@ -94,7 +105,7 @@ bool	Customer::Manual()
   while (1) /* Le code est moche je sais */
     {
       write(1, DISPLAY_CARTE, strlen(DISPLAY_CARTE));
-      write(1, DISPLAY_HISTORY, strlen(DISPLAY_HISTORY));
+      write(1, START_ENG, strlen(START_ENG));
       write(1, CURSOR, 2);
       bzero(buffer, SIZE);
       ret = read(0, buffer, SIZE); /* ecoute l'entrée standart pour la commande */
@@ -112,6 +123,7 @@ bool	Customer::Manual()
 	bzero(buffer, SIZE);
       }
     }
+  return (true);
 }
 
 void Customer::setPort(int port)

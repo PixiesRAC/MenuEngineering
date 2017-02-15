@@ -13,6 +13,7 @@ int	main(int argc, char **argv)
       return (1);
     }
     cstmr.Automatic();
+    cstmr.Manual();
   }
   return (0);	
 }

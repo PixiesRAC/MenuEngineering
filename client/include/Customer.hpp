@@ -2,6 +2,7 @@
 # define CUSTOMER_HPP_
 
 #include <vector>
+#include <unordered_map>
 #include "Icustomer.hpp"
 //#include "../../server/include/Item.hpp"
 #include "../../server/include/Item.h"
@@ -11,7 +12,7 @@
 # define ACK			"ACK"
 # define RECEPTION		"Reception de la carte"
 # define DISPLAY_CARTE		"Afficher la carte => 'carte'\n"
-# define DISPLAY_HISTORY	"Historique des achats => 'history'\n"
+# define START_ENG		"Lanchement de la recommandation client => 'menu'\n"
 # define CURSOR			"=>"		
 /*
  * \class Customer
@@ -83,10 +84,11 @@ public :
 private :
 
 
-  int			fdServer_; /*!< file descriptor du server */
-  int			port_; /*!< port du server */
-  char			buffer_[SIZE]; /*!< Buffer de reception */
-  static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";  /* oui je sais on devrait faire un header commun */ /*!< Chemin de la carte pour le client */
-  int			nbItem_;
+  int						fdServer_; /*!< file descriptor du server */
+  int						port_; /*!< port du server */
+  char						buffer_[SIZE]; /*!< Buffer de reception */
+  static constexpr const char			*path_vente_item_ = "../../conf/PRODUITS_VENTE.json";  /* oui je sais on devrait faire un header commun */ /*!< Chemin de la carte pour le client */
+  int						nbItem_;
+  std::unordered_map<int, std::string>		mItemId_;
 };
 #endif /* !CUSTOMER_HPP_  */

@@ -12,7 +12,7 @@
 # define ACK		"ACK"
 # define OK		"OK"
 # define KO		"KO"
-# define HISTORY	"history"
+# define MENU		"menu"
 /*
  * \class ServerEngmenu
  * \brief Class du simulateur du server de restaurant herite de IserverEngMenu 
@@ -109,7 +109,7 @@ public :
   int				fdClient_; /*!< fd acheteur (un seul pour le moment) */
   int				fdServer_; /*!< fd acheteur (un seul pour le moment) */
   char				buffer_[SIZE_BUFF]; /*!< buffer reception client */
-  static constexpr const int	pg_port_ = 4244; /*!< private global port */
+  static constexpr const int	pg_port_ = 4242; /*!< private global port */
   static constexpr const char   *path_achat_item_ = "../../conf/PRODUITS_ACHAT.json"; /*!< Chemin du menu d'achat */
   static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json"; /*!< Chemin du menu de vente */
   std::vector<t_item>		menuItem_; /*!< vector d'item contenant les produits du menu */
@@ -117,6 +117,7 @@ public :
   bool				isReady_; /*< Permet de savoir si le server est pret */
   unsigned int			bought_; /*< Nombre de Produit acheté */
   unsigned int			medianMargin_; /*< Moyenne de la marge */
+  int				cptItem_;
   
   std::vector<t_item>  		dog_;
   std::vector<t_item>  		horse_;
