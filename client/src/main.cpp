@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
       perror("Error de code : ");
       return (1);
     }
-    cstmr.Manual();
+    cstmr.Automatic();
   }
   return (0);	
 }

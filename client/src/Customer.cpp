@@ -6,11 +6,12 @@
 #include <arpa/inet.h>
 #include <cstring>
 #include <unistd.h>
+#include <stdlib.h>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include "../include/Customer.hpp"
 
-Customer::Customer()
+Customer::Customer() : nbItem_(0)
 {
 	std::cout << "Customer Construction" << std::endl;
 	bzero(this->buffer_, SIZE);
@@ -50,6 +51,7 @@ bool	Customer::ConnectTo()
 
 void	Customer::getMenu()
 {
+  this->nbItem_ = 0;
   boost::property_tree::ptree root;
 
   boost::property_tree::read_json(path_vente_item_, root);
@@ -61,6 +63,7 @@ void	Customer::getMenu()
 	//      /*tmpItem.id =*/    root.get<int>("MENU." + std::string(Item.first) + ".id");
       /*tmpItem.name = */       std::cout << root.get<std::string>("MENU." + std::string(Item.first) + ".name") + " : " << 
 	root.get<int>("MENU." + std::string(Item.first) + ".prix") << "€" << std::endl;
+      ++(this->nbItem_);
       //      /*tmpItem.marge =*/ root.get<int>("MENU." + std::string(Item.first) + ".marge");
       //      this->menuItem_.push_back(tmpItem);
     }
@@ -73,7 +76,13 @@ void	Customer::Buy()
 
 bool	Customer::Automatic()
 {
-
+  std::cout << this->nbItem_; 
+  //  for (int i = 500; i <= 0; --i)
+  //    {
+  //      int randomValue;
+  //      randomValue = rand() % this->nbItem_;
+  //      std::cout << randomValue << std::endl;
+  //    }
 }
 
 bool	Customer::Manual()

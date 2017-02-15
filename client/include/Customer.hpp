@@ -87,6 +87,6 @@ private :
   int			port_; /*!< port du server */
   char			buffer_[SIZE]; /*!< Buffer de reception */
   static constexpr const char   *path_vente_item_ = "../../conf/PRODUITS_VENTE.json";  /* oui je sais on devrait faire un header commun */ /*!< Chemin de la carte pour le client */
+  int			nbItem_;
 };
-
 #endif /* !CUSTOMER_HPP_  */
