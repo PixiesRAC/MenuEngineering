@@ -3,29 +3,27 @@ Menu Engineering
 Le menu engineering est une fonction permettant d’aider le restaurateur a adapter son menu en fonction des ventes de produits, des événements, ou encore des dates.
 Il classe les produits en quatre catégories en fonction de leur nombre de ventes et de leur marge :
 
-	- Star : 	Le produit se vend tres bien et profite d’une bonne marge, il s’agit de l’un des meilleurs produits.
-	- Puzzle : 	Le produit profite d’une bonne marge, mais ne se vend pas tres bien, le menu engineering donnera au restaurateur
+	- Star : 	Le produit se vend très bien et profite d’une bonne marge, il s’agit de l’un des meilleurs produits.
+	- Puzzle : 	Le produit profite d’une bonne marge, mais ne se vend pas très bien, le menu engineering donnera au restaurateur
 			des conseils pour améliorer la vente de ce produit tout en gardant une bonne marge.
-	- Horse : 	Le produit se vend tres bien, mais sa marge est faible, le menu engineering donnera des conseils pour améliorer
-			le profit sur ce produit tout en gardant un nombre de vente élevé.
-	- Dog :		Le produit se vend mal et la marge est faible, il fait parti des moins bons produits, le menu engineering donnera
+	- Horse : 	Le produit se vend très bien, mais sa marge est faible, le menu engineering donnera des conseils pour améliorer
+			le profit sur ce produit tout en gardant un nombre de ventes élevé.
+	- Dog :		Le produit se vend mal et la marge est faible, il fait partie des moins bons produits, le menu engineering donnera
 			des conseils pour améliorer profit et vente sur ce dernier.
 
-Le programme se divise en deux parties, un client et un serveur, le tout accompagné d’un fichier de configuration ou l’on place nos produits,
-avec leurs prix de ventes ainsi que la marge que l’on souhaite prendre sur chaque produit.
+Le programme se divise en deux parties, un client et un serveur, le tout accompagné d’un fichier de configuration où l’on place nos produits,
+avec leurs prix de vente ainsi que la marge que l’on souhaite prendre sur chaque produit.
 
 Le fichier de configuration est le premier traité, il va calculer la marge sur chaque produit pour modifier leur prix.
-Ensuite, le serveur se lance sur un port spécifié dans le code, il est pret a écouter et recevoir les demandes du client.
-Le client se lance ensuite sur le port du serveur, il possede deux modes de lancement :
+Ensuite, le serveur se lance sur un port spécifié dans le code, il est prêt à écouter et recevoir les demandes du client.
+Le client se lance ensuite sur le port du serveur, il possède deux modes de lancement :
 	
-	- Automatique, on lui spécifie un nombre de requete, qu’il executera ensuite en sélectionnant des produits aléatoirement.
+	- Automatique, on lui spécifie un nombre de requêtes, qu’il exécutera ensuite en sélectionnant des produits aléatoirement.
 	- Manuel, le client envoie ses demandes produit par produit.
 
-Chaque requête est validé coté serveur en retournant un ACK sinon il retourne un KO.
+Chaque requête est validée côté serveur en retournant un ACK sinon il retourne un KO.
 
 Commande :
-	- carte : Le menu nous est retourné avec chaque prix par produit
+	- carte : Le menu nous est retournés avec chaque prix par produit
 	- menu : Retourne coté serveur, le classement de nos produits en fonction du nombre de vente et de marge
-	- history : Retourne l’historique des demandes reçues coté serveur.
-
-
+	- history : Retourne l’historique des demandes reçues côté serveur.
