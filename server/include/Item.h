@@ -3,6 +3,12 @@
 
 #include <string>
 
+/*!
+ * \enum t_type
+ * \brief structure pour le type de produit (USELESS FOR THE MOMENT)
+ *
+ */
+
 typedef enum	e_type
   {
     POISSON,
@@ -15,7 +21,7 @@ typedef enum	e_type
     MOUSSAKA
   }		t_type;
 
-/*
+/*!
  * \struct t_item
  * \brief structure du menu
  *

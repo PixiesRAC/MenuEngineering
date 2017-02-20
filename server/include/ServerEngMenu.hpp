@@ -13,7 +13,7 @@
 # define OK		"OK"
 # define KO		"KO"
 # define MENU		"menu"
-/*
+/*!
  * \class ServerEngmenu
  * \brief Class du simulateur du server de restaurant herite de IserverEngMenu 
  *
@@ -33,7 +33,7 @@ public :
     
   virtual ~ServerEngmenu();
 
-    /*
+    /*!
    * \fn EtablishEndPoint (METHODE final override)
    * \brief Etablis la connexion
    * \return bool
@@ -41,7 +41,7 @@ public :
   
   virtual bool EtablishEndPoint()  final override;
 
-    /*
+    /*!
    * \fn KeepCommand  (METHODE final override)
    * \brief read sur le client pour recevoir les commandes
    */
@@ -49,7 +49,7 @@ public :
   
   virtual void KeepCommand() final override;
   
-    /*
+    /*!
    * \fn ProcessMargin  (METHODE final override)
    * \brief fait la conversion (%) de marge entre le prix d'achat et le prix de vente
    */
@@ -57,21 +57,21 @@ public :
   
   virtual void ProcessMargin() final override;
 
-    /*
+    /*!
    * \fn WriteTo  (METHODE final override)
    * \brief ecrit vers le client
    */
   
-  virtual void WriteTo() final override; /* useless */
+  virtual void WriteTo() final override; /*! useless */
 
-  /*
+  /*!
    * \fn ProcessEng
    * \brief Algo pour le menu engineering
    */
   
   void		ProcessEng();
 
-  /*
+  /*!
    * \fn checkStock
    * \brief Notification stock
    */
@@ -79,14 +79,14 @@ public :
   void		checkStock();
 
 
-  /*
+  /*!
    * \fn getBuffer
    * \brief recupere le buffer de reception fonction membre const
    */
   
   std::string	getBuffer() const;
 
-  /*
+  /*!
    * \fn displayHistory
    * \brief get l'history sur le server & le client
    */

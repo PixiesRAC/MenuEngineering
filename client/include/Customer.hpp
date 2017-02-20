@@ -13,8 +13,9 @@
 # define RECEPTION		"Reception de la carte"
 # define DISPLAY_CARTE		"Afficher la carte => 'carte'\n"
 # define START_ENG		"Lanchement de la recommandation client => 'menu'\n"
-# define CURSOR			"=>"		
-/*
+# define CURSOR			"=>"
+
+/*!
  * \class Customer
  * \brief Class correspondant au simulateur du client qui va passer la commande (herite de Icustomer)
  *
@@ -35,7 +36,7 @@ public :
   
   virtual ~Customer();
 
-    /*
+    /*!
    * \fn ConnectTo
    * \brief Methode pour se connecter au server
    * \return bool
@@ -43,14 +44,14 @@ public :
   
   virtual bool ConnectTo() final override;
 
-    /*
+    /*!
    * \fn Buy
    * \brief Methode pure pour acheter au server
    */
   
   virtual void Buy() final override;
 
-  /*
+  /*!
    * \fn setPort
    * \brief set le port en question
    * \param int port
@@ -58,7 +59,7 @@ public :
   
   void	setPort(int port);
 
-  /*
+  /*!
    * \fn Automatic
    * \brief Permet de faire des achats automatique
    * \return bool
@@ -66,7 +67,7 @@ public :
   
   bool	Automatic();
 
-  /*
+  /*!
    * \fn Manual
    * \brief Permet de faire des achats Manuel
    * \return bool
@@ -74,7 +75,7 @@ public :
   
   bool	Manual();
 
-  /*
+  /*!
    * \fn getMenu
    * \brief Lit la carte du menu
    */

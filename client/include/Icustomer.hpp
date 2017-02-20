@@ -3,7 +3,7 @@
 #ifndef ICUSTOMER_HPP_
 # define ICUSTOMER_HPP_
 
-/*
+/*!
  * \class Icustomer
  * \brief Class correspondant à l'interface du simulateur du client qui va passer la commande
  *
@@ -16,7 +16,7 @@ public :
   
 	virtual ~Icustomer() {};
   
-  /*
+  /*!
    * \fn ConnectTo
    * \brief Methode pure pour se connecter au server
    * \return bool
@@ -25,7 +25,7 @@ public :
 	virtual bool ConnectTo() = 0;
 
 
-  /*
+  /*!
    * \fn Buy
    * \brief Methode pure pour acheter au server
    */
@@ -33,4 +33,4 @@ public :
 	virtual void Buy() = 0;
 };
 
-#endif /* !ICUSTOMER_HPP_ */
+#endif /*! !ICUSTOMER_HPP_ */

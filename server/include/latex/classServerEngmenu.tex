@@ -1,0 +1,96 @@
+\hypertarget{classServerEngmenu}{}\section{Server\+Engmenu Class Reference}
+\label{classServerEngmenu}\index{Server\+Engmenu@{Server\+Engmenu}}
+
+
+Class du simulateur du server de restaurant herite de \hyperlink{classIserverEngMenu}{Iserver\+Eng\+Menu}.  
+
+
+
+
+{\ttfamily \#include $<$Server\+Eng\+Menu.\+hpp$>$}
+
+
+
+Inheritance diagram for Server\+Engmenu\+:
+% FIG 0
+
+
+Collaboration diagram for Server\+Engmenu\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Server\+Engmenu} (const \hyperlink{classServerEngmenu}{Server\+Engmenu} \&)=delete\hypertarget{classServerEngmenu_aeb98bc559b12c73a84d7321aa60a67e5}{}\label{classServerEngmenu_aeb98bc559b12c73a84d7321aa60a67e5}
+
+\item 
+{\bfseries Server\+Engmenu} (\hyperlink{classServerEngmenu}{Server\+Engmenu} \&\&)=delete\hypertarget{classServerEngmenu_a2eb05781e09498c058727bd443351621}{}\label{classServerEngmenu_a2eb05781e09498c058727bd443351621}
+
+\item 
+const \hyperlink{classServerEngmenu}{Server\+Engmenu} \& {\bfseries operator=} (const \hyperlink{classServerEngmenu}{Server\+Engmenu} \&)=delete\hypertarget{classServerEngmenu_a6143b7294251606818d67c3a347d2ac7}{}\label{classServerEngmenu_a6143b7294251606818d67c3a347d2ac7}
+
+\item 
+\hyperlink{classServerEngmenu}{Server\+Engmenu} \&\& {\bfseries operator=} (\hyperlink{classServerEngmenu}{Server\+Engmenu} \&\&)=delete\hypertarget{classServerEngmenu_a10ed3d71a29565d8887a1a321bb8d2a2}{}\label{classServerEngmenu_a10ed3d71a29565d8887a1a321bb8d2a2}
+
+\item 
+virtual bool \hyperlink{classServerEngmenu_a4fda37dbb8dae5e5aa5b7a59ebf518b8}{Etablish\+End\+Point} () finaloverride
+\begin{DoxyCompactList}\small\item\em Etablis la connexion. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classServerEngmenu_a27d08dd4167e60cb90a0a097cd41a2bd}{Keep\+Command} () finaloverride\hypertarget{classServerEngmenu_a27d08dd4167e60cb90a0a097cd41a2bd}{}\label{classServerEngmenu_a27d08dd4167e60cb90a0a097cd41a2bd}
+
+\begin{DoxyCompactList}\small\item\em read sur le client pour recevoir les commandes \end{DoxyCompactList}\item 
+virtual void \hyperlink{classServerEngmenu_a50b30a6ca3a1ffcddf051289dc65c996}{Process\+Margin} () finaloverride\hypertarget{classServerEngmenu_a50b30a6ca3a1ffcddf051289dc65c996}{}\label{classServerEngmenu_a50b30a6ca3a1ffcddf051289dc65c996}
+
+\begin{DoxyCompactList}\small\item\em fait la conversion (\%) de marge entre le prix d\textquotesingle{}achat et le prix de vente \end{DoxyCompactList}\item 
+virtual void \hyperlink{classServerEngmenu_a76e2b435cd107127382e0b07a393fb9a}{Write\+To} () finaloverride\hypertarget{classServerEngmenu_a76e2b435cd107127382e0b07a393fb9a}{}\label{classServerEngmenu_a76e2b435cd107127382e0b07a393fb9a}
+
+\begin{DoxyCompactList}\small\item\em ecrit vers le client \end{DoxyCompactList}\item 
+void \hyperlink{classServerEngmenu_acc59cd666aa2872d02d8a1e6d5968871}{Process\+Eng} ()
+\begin{DoxyCompactList}\small\item\em Algo pour le menu engineering. \end{DoxyCompactList}\item 
+void \hyperlink{classServerEngmenu_ac5a8167a38a4595138cb6b7e29f2e07a}{check\+Stock} ()\hypertarget{classServerEngmenu_ac5a8167a38a4595138cb6b7e29f2e07a}{}\label{classServerEngmenu_ac5a8167a38a4595138cb6b7e29f2e07a}
+
+\begin{DoxyCompactList}\small\item\em Notification stock. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classServerEngmenu_a5ffe62bedb32bd3b66b26d7771a3eff0}{get\+Buffer} () const \hypertarget{classServerEngmenu_a5ffe62bedb32bd3b66b26d7771a3eff0}{}\label{classServerEngmenu_a5ffe62bedb32bd3b66b26d7771a3eff0}
+
+\begin{DoxyCompactList}\small\item\em recupere le buffer de reception fonction membre const \end{DoxyCompactList}\item 
+void \hyperlink{classServerEngmenu_a59623ef2f5950cae163f950ebb3d9a08}{display\+History} ()\hypertarget{classServerEngmenu_a59623ef2f5950cae163f950ebb3d9a08}{}\label{classServerEngmenu_a59623ef2f5950cae163f950ebb3d9a08}
+
+\begin{DoxyCompactList}\small\item\em get l\textquotesingle{}history sur le server \& le client \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class du simulateur du server de restaurant herite de \hyperlink{classIserverEngMenu}{Iserver\+Eng\+Menu}. 
+
+\subsection{Member Function Documentation}
+\index{Server\+Engmenu@{Server\+Engmenu}!Etablish\+End\+Point@{Etablish\+End\+Point}}
+\index{Etablish\+End\+Point@{Etablish\+End\+Point}!Server\+Engmenu@{Server\+Engmenu}}
+\subsubsection[{\texorpdfstring{Etablish\+End\+Point() finaloverride}{EtablishEndPoint() finaloverride}}]{\setlength{\rightskip}{0pt plus 5cm}Server\+Engmenu\+::\+Etablish\+End\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classServerEngmenu_a4fda37dbb8dae5e5aa5b7a59ebf518b8}{}\label{classServerEngmenu_a4fda37dbb8dae5e5aa5b7a59ebf518b8}
+
+
+Etablis la connexion. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIserverEngMenu_acf251713e539d3ff08cc91bb572fb4cf}{Iserver\+Eng\+Menu}.
+
+\index{Server\+Engmenu@{Server\+Engmenu}!Process\+Eng@{Process\+Eng}}
+\index{Process\+Eng@{Process\+Eng}!Server\+Engmenu@{Server\+Engmenu}}
+\subsubsection[{\texorpdfstring{Process\+Eng()}{ProcessEng()}}]{\setlength{\rightskip}{0pt plus 5cm}Server\+Engmenu\+::\+Process\+Eng (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServerEngmenu_acc59cd666aa2872d02d8a1e6d5968871}{}\label{classServerEngmenu_acc59cd666aa2872d02d8a1e6d5968871}
+
+
+Algo pour le menu engineering. 
+
+useless 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Server\+Eng\+Menu.\+hpp\end{DoxyCompactItemize}

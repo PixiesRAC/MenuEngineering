@@ -1,0 +1,46 @@
+\hypertarget{classIserverEngMenu}{}\section{Iserver\+Eng\+Menu Class Reference}
+\label{classIserverEngMenu}\index{Iserver\+Eng\+Menu@{Iserver\+Eng\+Menu}}
+
+
+Inheritance diagram for Iserver\+Eng\+Menu\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classIserverEngMenu_acf251713e539d3ff08cc91bb572fb4cf}{Etablish\+End\+Point} ()=0
+\begin{DoxyCompactList}\small\item\em Etablis la connexion. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classIserverEngMenu_a3ef609b8d0a4c0f4fcb3beaafc74d8ab}{Keep\+Command} ()=0\hypertarget{classIserverEngMenu_a3ef609b8d0a4c0f4fcb3beaafc74d8ab}{}\label{classIserverEngMenu_a3ef609b8d0a4c0f4fcb3beaafc74d8ab}
+
+\begin{DoxyCompactList}\small\item\em read sur le client pour recevoir les commandes \end{DoxyCompactList}\item 
+virtual void \hyperlink{classIserverEngMenu_ab4b5f535d318f45739e7f63f4c3701dc}{Process\+Margin} ()=0\hypertarget{classIserverEngMenu_ab4b5f535d318f45739e7f63f4c3701dc}{}\label{classIserverEngMenu_ab4b5f535d318f45739e7f63f4c3701dc}
+
+\begin{DoxyCompactList}\small\item\em fait la conversion (\%) de marge entre le prix d\textquotesingle{}achat et le prix de vente \end{DoxyCompactList}\item 
+virtual void \hyperlink{classIserverEngMenu_a4ecde2f08732fa035fe1015409d87011}{Write\+To} ()=0\hypertarget{classIserverEngMenu_a4ecde2f08732fa035fe1015409d87011}{}\label{classIserverEngMenu_a4ecde2f08732fa035fe1015409d87011}
+
+\begin{DoxyCompactList}\small\item\em ecrit vers le client \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Iserver\+Eng\+Menu@{Iserver\+Eng\+Menu}!Etablish\+End\+Point@{Etablish\+End\+Point}}
+\index{Etablish\+End\+Point@{Etablish\+End\+Point}!Iserver\+Eng\+Menu@{Iserver\+Eng\+Menu}}
+\subsubsection[{\texorpdfstring{Etablish\+End\+Point()=0}{EtablishEndPoint()=0}}]{\setlength{\rightskip}{0pt plus 5cm}Iserver\+Eng\+Menu\+::\+Etablish\+End\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{classIserverEngMenu_acf251713e539d3ff08cc91bb572fb4cf}{}\label{classIserverEngMenu_acf251713e539d3ff08cc91bb572fb4cf}
+
+
+Etablis la connexion. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classServerEngmenu_a4fda37dbb8dae5e5aa5b7a59ebf518b8}{Server\+Engmenu}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Iserver\+Eng\+Menu.\+hpp\end{DoxyCompactItemize}
