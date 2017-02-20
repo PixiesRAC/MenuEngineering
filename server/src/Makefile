@@ -1,12 +1,11 @@
-CC=g++ 
+CC=g++
 CFLAGS= -std=c++11 -Wall -pedantic
-LDFLAGS=
 EXEC=Server
 
 all: $(EXEC)
 
 Server: main.o Server.o
-	$(CC) -o Server Server.o main.o $(LDFLAGS)
+	$(CC) -o Server Server.o main.o
 
 Server.o: ServerEngMenu.cpp
 	$(CC) -o Server.o -c ServerEngMenu.cpp $(CFLAGS)
