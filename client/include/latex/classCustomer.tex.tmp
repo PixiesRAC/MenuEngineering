@@ -1,0 +1,121 @@
+\hypertarget{classCustomer}{}\section{Customer Class Reference}
+\label{classCustomer}\index{Customer@{Customer}}
+
+
+Class correspondant au simulateur du client qui va passer la commande (herite de \hyperlink{classIcustomer}{Icustomer})  
+
+
+
+
+{\ttfamily \#include $<$Customer.\+hpp$>$}
+
+
+
+Inheritance diagram for Customer\+:
+% FIG 0
+
+
+Collaboration diagram for Customer\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Customer} (const \hyperlink{classCustomer}{Customer} \&)=delete\hypertarget{classCustomer_aa4d1bfe8f64757c9cdcee29435bf1dc4}{}\label{classCustomer_aa4d1bfe8f64757c9cdcee29435bf1dc4}
+
+\item 
+{\bfseries Customer} (\hyperlink{classCustomer}{Customer} \&\&)=delete\hypertarget{classCustomer_a4720bca89009a70fe376278bb04d7c91}{}\label{classCustomer_a4720bca89009a70fe376278bb04d7c91}
+
+\item 
+const \hyperlink{classCustomer}{Customer} \& {\bfseries operator=} (const \hyperlink{classCustomer}{Customer} \&)=delete\hypertarget{classCustomer_af20a40c8e4cb8ed175f1b7b2dd3de631}{}\label{classCustomer_af20a40c8e4cb8ed175f1b7b2dd3de631}
+
+\item 
+\hyperlink{classCustomer}{Customer} \&\& {\bfseries operator=} (\hyperlink{classCustomer}{Customer} \&\&)=delete\hypertarget{classCustomer_a59784c0dc47fb2956f3df06932a07939}{}\label{classCustomer_a59784c0dc47fb2956f3df06932a07939}
+
+\item 
+virtual bool \hyperlink{classCustomer_a802d50a64f8d850426fd1134a6a6c420}{Connect\+To} () finaloverride
+\begin{DoxyCompactList}\small\item\em Methode pour se connecter au server. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classCustomer_a165054e2029a2a84f1601e13d7b3a21d}{Buy} () finaloverride\hypertarget{classCustomer_a165054e2029a2a84f1601e13d7b3a21d}{}\label{classCustomer_a165054e2029a2a84f1601e13d7b3a21d}
+
+\begin{DoxyCompactList}\small\item\em Methode pure pour acheter au server. \end{DoxyCompactList}\item 
+void \hyperlink{classCustomer_a5c80cee6910344e330abb8682a090cfb}{set\+Port} (int port)
+\begin{DoxyCompactList}\small\item\em set le port en question \end{DoxyCompactList}\item 
+bool \hyperlink{classCustomer_a4d05dd9afe6653c86a69d671f28f05b9}{Automatic} ()
+\begin{DoxyCompactList}\small\item\em Permet de faire des achats automatique. \end{DoxyCompactList}\item 
+bool \hyperlink{classCustomer_a92b2836e010c6d3b70348dbcad79c12e}{Manual} ()
+\begin{DoxyCompactList}\small\item\em Permet de faire des achats Manuel. \end{DoxyCompactList}\item 
+void \hyperlink{classCustomer_a67f763ade9c48cfe1857267d1e71d321}{get\+Menu} ()\hypertarget{classCustomer_a67f763ade9c48cfe1857267d1e71d321}{}\label{classCustomer_a67f763ade9c48cfe1857267d1e71d321}
+
+\begin{DoxyCompactList}\small\item\em Lit la carte du menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class correspondant au simulateur du client qui va passer la commande (herite de \hyperlink{classIcustomer}{Icustomer}) 
+
+\subsection{Member Function Documentation}
+\index{Customer@{Customer}!Automatic@{Automatic}}
+\index{Automatic@{Automatic}!Customer@{Customer}}
+\subsubsection[{\texorpdfstring{Automatic()}{Automatic()}}]{\setlength{\rightskip}{0pt plus 5cm}Customer\+::\+Automatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCustomer_a4d05dd9afe6653c86a69d671f28f05b9}{}\label{classCustomer_a4d05dd9afe6653c86a69d671f28f05b9}
+
+
+Permet de faire des achats automatique. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\index{Customer@{Customer}!Connect\+To@{Connect\+To}}
+\index{Connect\+To@{Connect\+To}!Customer@{Customer}}
+\subsubsection[{\texorpdfstring{Connect\+To() finaloverride}{ConnectTo() finaloverride}}]{\setlength{\rightskip}{0pt plus 5cm}Customer\+::\+Connect\+To (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}\hypertarget{classCustomer_a802d50a64f8d850426fd1134a6a6c420}{}\label{classCustomer_a802d50a64f8d850426fd1134a6a6c420}
+
+
+Methode pour se connecter au server. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIcustomer_a0c30c91a220e8ae8f4c7a3fd67011e57}{Icustomer}.
+
+\index{Customer@{Customer}!Manual@{Manual}}
+\index{Manual@{Manual}!Customer@{Customer}}
+\subsubsection[{\texorpdfstring{Manual()}{Manual()}}]{\setlength{\rightskip}{0pt plus 5cm}Customer\+::\+Manual (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCustomer_a92b2836e010c6d3b70348dbcad79c12e}{}\label{classCustomer_a92b2836e010c6d3b70348dbcad79c12e}
+
+
+Permet de faire des achats Manuel. 
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\index{Customer@{Customer}!set\+Port@{set\+Port}}
+\index{set\+Port@{set\+Port}!Customer@{Customer}}
+\subsubsection[{\texorpdfstring{set\+Port(int port)}{setPort(int port)}}]{\setlength{\rightskip}{0pt plus 5cm}Customer\+::set\+Port (
+\begin{DoxyParamCaption}
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}\hypertarget{classCustomer_a5c80cee6910344e330abb8682a090cfb}{}\label{classCustomer_a5c80cee6910344e330abb8682a090cfb}
+
+
+set le port en question 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & port \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Customer.\+hpp\end{DoxyCompactItemize}

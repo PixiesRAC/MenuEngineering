@@ -81,7 +81,7 @@ bool	Customer::Automatic()
   std::cout << this->nbItem_;
   char	buffer[SIZE];
   int	ret = 0;
-  for (int i = 200000; i != 0; --i) /* nombre d'achat automatique ramdom */
+  for (int i = 2000; i != 0; --i) /* nombre d'achat automatique ramdom */
     {
       int randomValue;
       randomValue = rand() % this->nbItem_ ;
